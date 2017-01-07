@@ -28,9 +28,14 @@ named!(i64_digit<i64>,
 );
 
 named!(factor<i64>,
-  alt!(
-    i64_digit |
-    parens
+  chain!(
+    space? ~
+    v: alt!(
+      i64_digit |
+      parens
+    ) ~
+    space?,
+    || v
   )
 );
 
